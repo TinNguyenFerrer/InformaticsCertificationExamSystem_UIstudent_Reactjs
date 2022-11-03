@@ -6,9 +6,14 @@ const reques = axios.create({
     headers: {
         appID: 8,
         version: "1.1.0",
-        Authorization: `Bearer ${token}`
+        // Authorization: `Bearer ${localStorage.getItem('tokenICE')}`
     }
 })
+reques.interceptors.request.use(function (config) {
+    const token = localStorage.getItem('tokenICE');
+    config.headers.Authorization =  token ? `Bearer ${token}` : '';
+    return config;
+  });
 reques.interceptors.response.use(undefined, err => {
     console.log("looiii")
     token = localStorage.getItem('tokenICE')
