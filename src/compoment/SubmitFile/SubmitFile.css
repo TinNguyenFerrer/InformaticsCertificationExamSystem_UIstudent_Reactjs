@@ -1,0 +1,11 @@
+.SubmitFileCompoment::-webkit-file-upload-button{
+    display: none;
+}
+.SubmitFileCompoment::before{
+    
+    content: '';
+    /* border: 1px solid #999; */
+}
+.SubmitFileCompoment{
+    display: inline-block;
+}
