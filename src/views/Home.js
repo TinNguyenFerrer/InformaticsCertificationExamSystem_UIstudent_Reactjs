@@ -3,6 +3,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import background from '../assets/img/xbg_1.jpg'
 import Login from '../compoment/Login';
 import SubmitFileCard from '../compoment/SubmitFileCard';
+import logoCtu from '../assets/img/LogoCTU.png'
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/js/bootstrap.js';
 const Home = () => {
@@ -13,10 +14,11 @@ const Home = () => {
                 <div className="container">
                     <div className="row">
                         <div className="col-md col-xl-5 d-flex align-items-center">
-                            <a className="navbar-brand align-items-center"
-                                href="https://preview.colorlib.com/theme/academia/index.html">
-                                Academia
-                                <span>Online Education &amp; Learning</span>
+                            <img style={{height: "63px"}} src={logoCtu}></img>
+                            <a style={{fontWeight: "400",fontSize:"18px",color:"#fff"}} className="navbar-brand align-items-center font-weight-bold"
+                                href="">
+                                Trung Tâm điệm tử tin học
+                                <span>Đại Học Cần Thơ</span>
                             </a>
                         </div>
 
@@ -36,12 +38,12 @@ const Home = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item "><Link className="nav-link active"
                                 to="/">Home</Link></li>
-                            
+
                         </ul>
                     </div>
                 </div>
             </nav>
-            <section className="hero-wrap" style={{ backgroundImage: `url(${background})`,minHeight :"700px" }}>
+            <section className="hero-wrap" style={{ backgroundImage: `url(${background})`, minHeight: "700px" }}>
                 <div className="overlay"></div>
                 <div className="container">
                     <Routes>

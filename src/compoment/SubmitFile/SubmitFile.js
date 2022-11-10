@@ -4,6 +4,7 @@ import * as reques from "../../Until/request";
 import { useState } from "react";
 import "./SubmitFile.css"
 
+
 const inputSize = {
     height: "auto",
     width: "400px"
@@ -11,20 +12,21 @@ const inputSize = {
 
 
 function SubmitFile() {
-    const [scheduleId, setScheduleId ] = useState()
+    const [scheduleId, setScheduleId] = useState()
     const GetInfoIdTheory = async () => {
         try {
-            
+
             let res = await reques.getAPI("TheoryTest/GetIdScheduleByToken")
             const data = res.data;
             setScheduleId(data)
             console.log(res)
         } catch (e) {
-           // window.alert("")
-           console.log(e)
+            // window.alert("")
+            console.log(e)
         }
     }
-    useEffect(()=>{GetInfoIdTheory()},[])
+    
+    const [urlExcel, setUrlExcel] = useState();
     const [fileExcel, setFileExcel] = useState();
     const [fileWord, setFileWord] = useState();
     const [filePowerPoint, setFilePowerPoint] = useState();
@@ -78,6 +80,14 @@ function SubmitFile() {
             window.alert("Có lỗi trong quá trình UploadFile")
         }
     }
+    const GetExcelFileService = async () => {
+        let res = await reques.getAPI("TheoryTest/DownloadExcelByToken",{responseType: 'blob'})
+        console.log(res);
+        const type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        const blob = new Blob([res.data], { type: type})
+        setUrlExcel(window.URL.createObjectURL(blob))
+    }
+    useEffect(() => { /*GetInfoIdTheory();*/ GetExcelFileService() }, [])
     //====================================================
 
     return (
@@ -88,17 +98,21 @@ function SubmitFile() {
             />
             <br></br>
             <Label for='fileWord' className="form-label">File Word:</Label>
-            <Input  style={inputSize} className="form-control SubmitFileCompoment" type="file" id="fileWord" accept=".docx"
+            <Input style={inputSize} className="form-control SubmitFileCompoment" type="file" id="fileWord" accept=".docx"
                 onChange={changeHandlerFileWord}
             />
             <br></br>
             <Label for='filePowerPoint' className="form-label">File PowerPoint:</Label>
-            <Input  style={inputSize} className="form-control SubmitFileCompoment" type="file" id="filePowerPoint" accept=".pptx"
+            <Input style={inputSize} className="form-control SubmitFileCompoment" type="file" id="filePowerPoint" accept=".pptx"
                 onChange={changeHandlerFilePowerPoint}
             />
             <br></br>
             <Button color="success" onClick={uploadMultiFile}>Nộp bài</Button>
             <br></br>
+            <br></br>
+            <br></br>
+            
+            <a style={{fontSize:"20px"}} href={urlExcel} download="">File Excel</a>
         </div>
     )
 }
