@@ -14,16 +14,16 @@ reques.interceptors.request.use(function (config) {
     config.headers.Authorization =  token ? `Bearer ${token}` : '';
     return config;
   });
-reques.interceptors.response.use(undefined, err => {
-    console.log("looiii")
-    token = localStorage.getItem('tokenICE')
-    const error = err.response;
-    console.log(err)
-    // if error is 401 
-    if (error.status === 401){
-      console.log("code 401")
-    }
-  })
+// reques.interceptors.response.use(undefined, err => {
+//     console.log("looiii")
+//     token = localStorage.getItem('tokenICE')
+//     const error = err.response;
+//     console.log(err)
+//     // if error is 401 
+//     if (error.status === 401){
+//       console.log("code 401")
+//     }
+//   })
 //params
 export const getAPI = async (path, options = {}) => {
     const response = await reques.get(path, options);

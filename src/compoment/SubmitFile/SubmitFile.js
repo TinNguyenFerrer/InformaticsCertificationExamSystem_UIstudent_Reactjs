@@ -16,7 +16,7 @@ function SubmitFile() {
     const GetInfoIdTheory = async () => {
         try {
 
-            let res = await reques.getAPI("TheoryTest/GetIdScheduleByToken")
+            let res = await reques.getAPI("Student/GetIdScheduleByToken")
             const data = res.data;
             setScheduleId(data)
             console.log(res)
@@ -87,7 +87,7 @@ function SubmitFile() {
         const blob = new Blob([res.data], { type: type})
         setUrlExcel(window.URL.createObjectURL(blob))
     }
-    useEffect(() => { /*GetInfoIdTheory();*/ GetExcelFileService() }, [])
+    useEffect(() => { GetInfoIdTheory(); GetExcelFileService() }, [])
     //====================================================
 
     return (
