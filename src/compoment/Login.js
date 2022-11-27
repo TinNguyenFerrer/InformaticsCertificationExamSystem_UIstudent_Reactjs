@@ -26,6 +26,7 @@ const Login = () => {
                 window.alert("Nhập sai tên và mật khẩu")
             }
         } catch (e) {
+            console.log(e)
             window.alert("nhập sai tên và mật khẩu")
             navigate('/');
         }

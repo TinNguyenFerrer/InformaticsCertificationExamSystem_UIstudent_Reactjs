@@ -30,6 +30,7 @@ function SubmitFile() {
     const [fileExcel, setFileExcel] = useState();
     const [fileWord, setFileWord] = useState();
     const [filePowerPoint, setFilePowerPoint] = useState();
+    const [fileWindow, setFileWindow] = useState();
     const changeHandlerFileExcel = (e) => {
         setFileExcel(e.target.files[0]);
     }
@@ -39,12 +40,16 @@ function SubmitFile() {
     const changeHandlerFilePowerPoint = (e) => {
         setFilePowerPoint(e.target.files[0]);
     }
+    const changeHandlerFileWindow = (e) => {
+        setFileWindow(e.target.files[0]);
+    }
     //================upload file============================
     async function uploadMultiFile() {
         try {
             const formDataFileExcel = new FormData();
             const formDataFileWord = new FormData();
             const formDataFilePowerPoint = new FormData();
+            const formDataFileWindow = new FormData();
             if (fileExcel !== undefined) {
                 console.log(fileExcel)
                 formDataFileExcel.append("file", fileExcel);
@@ -67,6 +72,15 @@ function SubmitFile() {
             if (filePowerPoint !== undefined) {
                 formDataFilePowerPoint.append("file", filePowerPoint);
                 const response = await reques.postAPI(`TheoryTest/UploadFilePowerPoint?scheduleId=${scheduleId}`, formDataFilePowerPoint, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    }
+                });
+                console.log(response);
+            }
+            if (fileWindow !== undefined) {
+                formDataFileWindow.append("file", fileWindow);
+                const response = await reques.postAPI(`TheoryTest/UploadFileWindow?scheduleId=${scheduleId}`, formDataFileWindow, {
                     headers: {
                         "Content-Type": "multipart/form-data",
                     }
@@ -105,6 +119,11 @@ function SubmitFile() {
             <Label for='filePowerPoint' className="form-label">File PowerPoint:</Label>
             <Input style={inputSize} className="form-control SubmitFileCompoment" type="file" id="filePowerPoint" accept=".pptx"
                 onChange={changeHandlerFilePowerPoint}
+            />
+            <br></br>
+            <Label for='fileWindow' className="form-label">File Window:</Label>
+            <Input style={inputSize} className="form-control SubmitFileCompoment" type="file" id="fileWindow" accept=".zip, .rar"
+                onChange={changeHandlerFileWindow}
             />
             <br></br>
             <Button color="success" onClick={uploadMultiFile}>Nộp bài</Button>
