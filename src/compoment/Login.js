@@ -39,7 +39,7 @@ const Login = () => {
                     <div className="text mt-5 pt-5 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300" >
                         <div className="card border-0 shadow rounded-3 my-6">
                             <div className="card-body p-4 p-sm-5">
-                                <h5 className="card-title text-center mb-5 fw-light fs-5">Sign In</h5>
+                                <h5 className="card-title text-center mb-5 fw-light fs-5">Đăng nhập</h5>
                                 <form>
                                     <div className="form-floating mb-3">
                                         <Input type="text" className="form-control" id="floatingInput"
@@ -63,8 +63,7 @@ const Login = () => {
                                         <button className="btn btn-primary btn-login text-uppercase fw-bold" onClick={(e) => {
                                             e.preventDefault()
                                             submitLogin()
-                                        }}>Sign
-                                            in</button>
+                                        }}>Đăng nhập</button>
                                     </div>
 
                                 </form>
