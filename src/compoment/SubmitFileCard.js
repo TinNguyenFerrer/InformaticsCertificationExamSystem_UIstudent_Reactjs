@@ -17,10 +17,10 @@ const inputSize = {
 
 function SubmitFileCard() {
     const navigate = useNavigate();
-    const [user, setUser]= useState({});
+    const [user, setUser] = useState({});
     const GetInfoStudent = async () => {
         try {
-            
+
             let res = await request.getAPI("Student/GetStudentInfoByTokenIdExam")
             const data = res.data;
             setUser(data)
@@ -30,9 +30,13 @@ function SubmitFileCard() {
             navigate('/');
         }
     }
+    const Submit = (e) => {
+        e.preventDefault();
+        console.log("submit")
+    }
 
-    useEffect(()=>{GetInfoStudent()},[])
-    
+    useEffect(() => { GetInfoStudent() }, [])
+
 
 
 
@@ -44,9 +48,14 @@ function SubmitFileCard() {
                     <div className="text mt-5 pt-5 aos-init aos-animate" data-aos="fade-up" data-aos-delay="300" >
                         <Card className=" border-0 shadow rounded-3 my-6" style={cardStyle}>
                             <CardBody className="p-4 p-sm-5 text-left">
-                                <CardTitle className="text-center mb-5"><h2>Đề thi</h2></CardTitle>
-                                <h5>Họ tên thí sinh: {user.name||''}</h5>
-                                <h5>Ngày sinh: {new Date(user.birthDay).toLocaleDateString()||""}</h5>
+                                <CardTitle className="text-center mb-5">
+                                    <div className='text-end'>
+                                        <a href='/Home' on onClick={Submit}>Kết thúc</a>
+                                    </div>
+                                    <h2>Đề thi</h2>
+                                </CardTitle>
+                                <h5>Họ tên thí sinh: {user.name || ''}</h5>
+                                <h5>Ngày sinh: {new Date(user.birthDay).toLocaleDateString() || ""}</h5>
                                 <SubmitFile />
                                 <ViewPDF />
                             </CardBody>
