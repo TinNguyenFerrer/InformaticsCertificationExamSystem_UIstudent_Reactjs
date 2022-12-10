@@ -30,8 +30,10 @@ function SubmitFileCard() {
             navigate('/');
         }
     }
-    const Submit = (e) => {
+    const SubmitAndEnd = (e) => {
         e.preventDefault();
+        localStorage.removeItem('tokenICE')
+        navigate('/');
         console.log("submit")
     }
 
@@ -50,7 +52,7 @@ function SubmitFileCard() {
                             <CardBody className="p-4 p-sm-5 text-left">
                                 <CardTitle className="text-center mb-5">
                                     <div className='text-end'>
-                                        <a href='/Home' on onClick={Submit}>Kết thúc</a>
+                                        <a href='/Home' onClick={SubmitAndEnd}>Kết thúc</a>
                                     </div>
                                     <h2>Đề thi</h2>
                                 </CardTitle>
